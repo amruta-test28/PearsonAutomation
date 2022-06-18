@@ -17,104 +17,141 @@ namespace TestPearsonWeb
     [TestClass]
     public class UnitTest1
     {
-        //Initialize Chromebrowser
+        
         public IWebDriver driver;
         
 
         [SetUp]
         public void SetUp()
         {
+           
+            //Initialize Chromebrowser
+            driver = new ChromeDriver();
+
             //Open URL"www.pearson.com"
-          driver=new EdgeDriver();
-          driver.Navigate().GoToUrl("https://www.pearson.com/");
+            driver.Navigate().GoToUrl("https://www.pearson.com/");
 
             //Maximize browser window
-           driver.Manage().Window.Maximize();
+            driver.Manage().Window.Maximize();
             
         }
 
-
+        
         [TearDown]
        public void TearDown()
         {
             //Close the browser
+            
             driver.Quit();
         }
 
         [Test]
         public void Section_Student()
         {
-                     
             
-            //Find link to 'Students' page and click on it
-            driver.FindElement(By.CssSelector("#navbar-collapse-grid .dropdown:nth-child(3) > .dropdown-toggle")).Click();
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
 
-            //Wait for new page to load
-            System.Threading.Thread.Sleep(5000);
+                //Find link to 'Students' page and click on it
+                driver.FindElement(By.CssSelector("#navbar-collapse-grid .dropdown:nth-child(3) > .dropdown-toggle")).Click();
 
-            //Scroll page down
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("window.scrollBy(0,1000);");
+                //Wait for new page to load
+                System.Threading.Thread.Sleep(10000);
 
-            //Accept Cookies
-            driver.FindElement(By.XPath("//div[3]/div[2]/div[4]/div[2]/div/button")).Click();
-       
+                //Scroll page down
+                js.ExecuteScript("window.scrollBy(0,1200);");
+
+                //Accept Cookies
+                driver.FindElement(By.XPath("//div[3]/div[2]/div[4]/div[2]/div/button")).Click();
+
+
+                //Find link to'Discover MyLab' page and click on it
+                driver.FindElement(By.LinkText("Discover MyLab®")).Click();
+
+                //Wait for new page to load
+                System.Threading.Thread.Sleep(10000);
+
+                //Scroll page down
+                js.ExecuteScript("window.scrollBy(0,1200);");
+
+                //Find link to 'Accounting' page and click on it
+                driver.FindElement(By.CssSelector(".slick-current .c-collection__banner-title")).Click();
+
+                //Wait for page to load
+                System.Threading.Thread.Sleep(10000);
+
+                //Find link to 'Students' page and click on it
+                driver.FindElement(By.LinkText("Learning platforms")).Click();
+                System.Threading.Thread.Sleep(10000);
+
+                //If survet pop up then decline survey
+                CheckSurvey();
+                System.Threading.Thread.Sleep(10000);
+
+                js.ExecuteScript("window.scrollBy(0,1200);");
+                //Find link to 'Discover Mastering' page and click on it
+                driver.FindElement(By.LinkText("Discover Mastering®")).Click();
+                System.Threading.Thread.Sleep(10000);
+
+                js.ExecuteScript("window.scrollBy(0,1200);");
+                //Find link to 'Biology' page and click on it
+                //driver.FindElement(By.CssSelector(".slick-active .\\33 24948628158974850 .c-collection__banner-title")).Click();
+                driver.FindElement(By.XPath("//div[7]/div/div/a/span"));
+                System.Threading.Thread.Sleep(10000);
+
+                //Find link to 'Students' page and click on it
+                driver.FindElement(By.LinkText("Learning platforms")).Click();
+                System.Threading.Thread.Sleep(10000);
+                //If survet pop up then decline survey
+                CheckSurvey();
+                System.Threading.Thread.Sleep(10000);
+
+                js.ExecuteScript("window.scrollBy(0,1200);");
+                //Find link to 'Discover Revel' page and click on it
+                driver.FindElement(By.LinkText("Discover Revel®")).Click();
+                System.Threading.Thread.Sleep(10000);
+
+                js.ExecuteScript("window.scrollBy(0,1200);");
+                //Find link to 'Economics' page and click on it
+                // driver.FindElement(By.CssSelector(".slick-active .\\39 10804884651701900 .c-collection__banner-title")).Click();
+               driver.FindElement(By.XPath("//div[6]/div/div/a/span"));
+
+                System.Threading.Thread.Sleep(10000);
+
+                //Find link to 'Students' page and click on it
+                driver.FindElement(By.LinkText("Learning platforms")).Click();
+                System.Threading.Thread.Sleep(10000);
+
+                //If survet pop up then decline survey
+                CheckSurvey();
+                System.Threading.Thread.Sleep(10000);
+
+                js.ExecuteScript("window.scrollBy(0,1200);");
+               //Find linkbutton to 'Find your eText' page and click on it
+                driver.FindElement(By.LinkText("Shop Pearson eText")).Click();
+                System.Threading.Thread.Sleep(10000);
+
+                //Find link to 'Home' page and click on it
+                driver.FindElement(By.LinkText("Home")).Click();
+
+
+         //This function checks whether Survey pop up appears and declines it.
             
-            //Find link to'Discover MyLab' page and click on it
-            driver.FindElement(By.LinkText("Discover MyLab®")).Click();
+         void CheckSurvey()
+        {
 
-            //Wait for new page to load
-            System.Threading.Thread.Sleep(5000);
+                if (driver.FindElement(By.Id("mcxInvitationContainer")).Displayed)
+                {
+                    //driver.FindElement(By.Id("declinesurvey")).Click();
+                    driver.FindElement(By.LinkText("No Thanks")).Click();
+                    Console.WriteLine("survey decline");
+                }
 
-            //Scroll page down
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find link to 'Accounting' page and click on it
-            driver.FindElement(By.CssSelector(".slick-current .c-collection__banner-title")).Click();
-
-            //Wait for page to load
-            System.Threading.Thread.Sleep(5000);                                                                               
-
-            //Find link to 'Students' page and click on it
-            driver.FindElement(By.LinkText("Learning platforms")).Click();
-            System.Threading.Thread.Sleep(5000);                                                                               
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find link to 'Discover Mastering' page and click on it
-            driver.FindElement(By.LinkText("Discover Mastering®")).Click();
-            System.Threading.Thread.Sleep(5000);                                                                                
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find link to 'Biology' page and click on it
-            driver.FindElement(By.CssSelector(".slick-active .\\33 24948628158974850 .c-collection__banner-title")).Click();
-            System.Threading.Thread.Sleep(5000);
-
-            //Find link to 'Students' page and click on it
-            driver.FindElement(By.LinkText("Learning platforms")).Click();
-            System.Threading.Thread.Sleep(5000);
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find link to 'Discover Revel' page and click on it
-            driver.FindElement(By.LinkText("Discover Revel®")).Click();
-            System.Threading.Thread.Sleep(5000);
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find link to 'Economics' page and click on it
-            driver.FindElement(By.CssSelector(".slick-active .\\39 10804884651701900 .c-collection__banner-title")).Click();
-            System.Threading.Thread.Sleep(5000);
-
-            //Find link to 'Students' page and click on it
-            driver.FindElement(By.LinkText("Learning platforms")).Click();
-            System.Threading.Thread.Sleep(5000);
-            js.ExecuteScript("window.scrollBy(0,1000);");
-
-            //Find linkbutton to 'Find your eText' page and click on it
-            driver.FindElement(By.LinkText("Shop Pearson eText")).Click();
-            System.Threading.Thread.Sleep(5000);
-
-            //Find link to 'Home' page and click on it
-            driver.FindElement(By.LinkText("Home")).Click();
+                else
+                    Console.WriteLine("no survey pop up");
         }
+
+    }
+        
 
         [Test]
         public void Page_WhoWeAre() {
@@ -136,8 +173,8 @@ namespace TestPearsonWeb
             //Wait for new page to load
             System.Threading.Thread.Sleep(5000);
 
-            //Check text 'Our company' exists on the page and store it in string
-            String str=driver.FindElement(By.ClassName("col-xs-12")).Text;
+            //Check text 'Our company' exists on the page and store it in string        
+            String str = driver.FindElement(By.XPath("//span[contains(.,'Our company')]")).Text;
 
             //Display text on console output
             Console.WriteLine(str);
@@ -165,9 +202,11 @@ namespace TestPearsonWeb
             System.Threading.Thread.Sleep(5000);
 
             //Check text 'Clinical assessments' exists on the page and store it in string
-            string str = driver.FindElement(By.ClassName("hero-carousel-user-data")).Text;
+            string str = driver.FindElement(By.CssSelector(".slick-slide:nth-child(2) h1:nth-child(1)")).Text;
+
             //Display text on console output
             Console.WriteLine(str);
+           
            
             
         }
