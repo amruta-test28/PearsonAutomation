@@ -151,7 +151,7 @@ namespace TestPearsonWeb
                 }
 
                 else
-                    Console.WriteLine("no survey pop up");
+                    Console.WriteLine("No survey pop up");
         }
 
     }
