@@ -56,6 +56,7 @@ namespace TestPearsonWeb
 
                 //Wait for new page to load
                 System.Threading.Thread.Sleep(10000);
+              //driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(10);
 
                 //Scroll page down
                 js.ExecuteScript("window.scrollBy(0,1200);");
@@ -108,12 +109,15 @@ namespace TestPearsonWeb
                 js.ExecuteScript("window.scrollBy(0,1200);");
                 //Find link to 'Discover Revel' page and click on it
                 driver.FindElement(By.LinkText("Discover Revel®")).Click();
-                System.Threading.Thread.Sleep(10000);
+             System.Threading.Thread.Sleep(10000);
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
-                js.ExecuteScript("window.scrollBy(0,1200);");
-                //Find link to 'Economics' page and click on it
-                // driver.FindElement(By.CssSelector(".slick-active .\\39 10804884651701900 .c-collection__banner-title")).Click();
-               driver.FindElement(By.XPath("//div[6]/div/div/a/span"));
+            js.ExecuteScript("window.scrollBy(0,1200);");
+              
+            //Find link to 'Economics' page and click on it
+            // driver.FindElement(By.CssSelector(".slick-active .\\39 10804884651701900 .c-collection__banner-title")).Click();
+            //driver.FindElement(By.XPath("//div[6]/div/div/a/span"));
+            driver.FindElement(By.XPath("//div[@class='slick-slide slick-active']//div//span[@class='c-collection__banner-title'][normalize-space()='Economics']")).Click();
 
                 System.Threading.Thread.Sleep(10000);
 
